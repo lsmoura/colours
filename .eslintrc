@@ -1,0 +1,38 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "spread": true,
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "prefer-spread": "warn",
+    "comma-dangle": [ "warn", "always-multiline" ],
+    "no-undef": "error",
+    "prefer-const": "warn",
+    "one-var": [ "warn", "never" ],
+    "no-unused-vars": "warn",
+    "react/require-render-return": "error",
+    "react/react-in-jsx-scope": "error",
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+    "react/jsx-no-undef": "error",
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "ignoreRefs": true,
+        "allowArrowFunctions": false,
+        "allowBind": false
+      }
+    ]
+  },
+  "plugins": [
+    "react"
+  ]
+}
