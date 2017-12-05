@@ -1,0 +1,23 @@
+{
+  "name": "colours",
+  "version": "1.0.0",
+  "description": "Colours",
+  "main": "index.js",
+  "repository": "https://github.com/lsmoura/colours.git",
+  "author": "Sergio Moura <sergio@moura.ca>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.5"
+  },
+  "dependencies": {
+    "preact": "^8.2.6",
+    "proptype": "^1.0.0"
+  }
+}
