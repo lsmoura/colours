@@ -5,7 +5,7 @@ import { Link } from 'preact-router';
 import Tints from './Tints';
 import Shades from './Shades';
 
-import { hexToRgb, rgbToHex } from './helpers';
+import { hexToRgb, rgbToHex, rgbToHsv } from './helpers';
 
 import styles from './style.less';
 
@@ -36,6 +36,8 @@ class App extends preact.Component {
   render() {
     const color = this.getColor();
     const rgb = hexToRgb(color);
+    const hsv = rgbToHsv(rgb);
+
     return (
       <div>
         <h1>Colour {color}</h1>
@@ -47,7 +49,8 @@ class App extends preact.Component {
         >
           <div>
             <div>{color}</div>
-            <div>({rgb.r}, {rgb.g}, {rgb.b})</div>
+            <div>RGB: {rgb.r}, {rgb.g}, {rgb.b}</div>
+            <div>HSV: {hsv.h}, {hsv.s}, {hsv.v}</div>
           </div>
         </div>
         <h2>Shades of {color}</h2>
