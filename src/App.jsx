@@ -44,7 +44,7 @@ class App extends preact.Component {
         <Tints color={rgb} />
         <footer>
           <p>Author: Sergio Moura</p>
-          <p><a href="https://github.com/lsmoura/colour">Fork me on github</a></p>
+          <p><a href="https://github.com/lsmoura/colours">Fork me on github</a></p>
         </footer>
       </div>
     );
