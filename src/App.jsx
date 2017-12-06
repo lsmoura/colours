@@ -8,11 +8,17 @@ import { hexToRgb } from './helpers';
 
 import styles from './style.less';
 
-class App extends preact.Component {
-  getColor() {
-    if (!window.location.hash) return '#1c84c6';
+const defaultColor = '#1c84c6';
 
-    return window.location.hash;
+class App extends preact.Component {
+  componentDidMount() {
+    document.title = `Colour ${this.getColor()}`;
+  }
+
+  getColor() {
+    if (this.props.url === '/') return defaultColor;
+
+    return `#${this.props.url.substr(1)}`;
   }
 
   render() {
@@ -45,7 +51,4 @@ class App extends preact.Component {
   }
 }
 
-preact.render(
-  <App />,
-  document.body
-);
+export default App;

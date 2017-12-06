@@ -27,6 +27,7 @@
   "dependencies": {
     "less": "^2.7.3",
     "preact": "^8.2.6",
+    "preact-router": "^2.6.0",
     "proptype": "^1.0.0"
   },
   "scripts": {

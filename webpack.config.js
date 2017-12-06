@@ -20,14 +20,14 @@ if (ENV === 'production') {
     output: { comments: false },
     compress: {
       drop_debugger: true,
-      
+
     },
   }))
 }
 
 const config = {
   context: path.resolve(__dirname, 'src'),
-	entry: './App.jsx',
+	entry: './index.jsx',
 
   output: {
 		path: path.resolve(__dirname, 'build'),
