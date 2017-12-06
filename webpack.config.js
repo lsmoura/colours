@@ -1,9 +1,29 @@
 /* global require process module __dirname */
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const ENV = process.env.NODE_ENV || 'development';
 const CSS_MAPS = ENV !== 'production';
+
+console.log(`building for '${ENV}' environment`);
+
+const plugins = [
+  new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(ENV) }),
+  new HtmlWebpackPlugin(),
+  new ExtractTextPlugin('styles.css'),
+];
+
+if (ENV === 'production') {
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    output: { comments: false },
+    compress: {
+      drop_debugger: true,
+      
+    },
+  }))
+}
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -36,26 +56,29 @@ const config = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: { sourceMap: CSS_MAPS },
-          },
-          {
-            loader: 'less-loader',
-            options: { sourceMap: CSS_MAPS },
-          },
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: CSS_MAPS,
+              },
+            },
+            {
+              loader: 'less-loader',
+              options: { sourceMap: CSS_MAPS },
+            },
+          ],
+        }),
       },
     ],
   },
 
-  plugins: [
-    new HtmlWebpackPlugin(),
-  ],
+  plugins,
 
-  devtool: 'source-map',
+  devtool: ENV === 'production' ? undefined : 'source-map',
 
   devServer: {
 		port: process.env.PORT || 8080,

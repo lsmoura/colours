@@ -2,6 +2,7 @@
 
 import preact from 'preact';
 import ShadeTintBase from './ShadeTintBase';
+import { tints } from './style.less';
 
 class Tints extends ShadeTintBase {
   render(props) {
@@ -22,7 +23,7 @@ class Tints extends ShadeTintBase {
     }
 
     return (
-      <div className="tints">
+      <div className={tints}>
         {this.allBlocks('tint', colors)}
       </div>
     );

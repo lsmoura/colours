@@ -3,6 +3,9 @@
 import preact from 'preact';
 import ShadeTintBase from './ShadeTintBase';
 
+import { shades } from './style.less';
+
+
 class Shades extends ShadeTintBase {
   render(props) {
     const colors = [];
@@ -22,7 +25,7 @@ class Shades extends ShadeTintBase {
     }
 
     return (
-      <div className="shades">
+      <div className={shades}>
         {this.allBlocks('shade', colors)}
       </div>
     );

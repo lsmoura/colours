@@ -6,7 +6,7 @@ import Shades from './Shades';
 
 import { hexToRgb } from './helpers';
 
-import './style.less';
+import styles from './style.less';
 
 class App extends preact.Component {
   getColor() {
@@ -22,7 +22,7 @@ class App extends preact.Component {
       <div>
         <h1>Colour {color}</h1>
         <div
-          className="color-box"
+          className={styles['color-box']}
           style={{
             backgroundColor: color,
           }}

@@ -1,7 +1,8 @@
 /** @jsx preact.h */
 
 import preact from 'preact';
-import  { rgbToHex } from './helpers';
+import { rgbToHex } from './helpers';
+import styles from './style.less';
 
 class ShadeTintBase extends preact.Component {
   backgroundColor(rgb) {
@@ -13,17 +14,17 @@ class ShadeTintBase extends preact.Component {
     return (
       <div
         key={key}
-        className="shade-block"
+        className={styles['shade-block']}
         onClick={() => {
           window.location.hash = hashColor;
         }}
         >
-        <div className="color-block"
+        <div className={styles['color-block']}
           style={{
             backgroundColor: this.backgroundColor(rgb),
           }}
           />
-        <div className="color-label">
+        <div className={styles['color-label']}>
           {rgbToHex(rgb.r, rgb.g, rgb.b)}
         </div>
       </div>
