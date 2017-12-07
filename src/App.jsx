@@ -7,12 +7,16 @@ import Shades from './Shades';
 
 import { hexToRgb, rgbToHex, rgbToHsv } from './helpers';
 
-import styles from './style.less';
+import styles, { contentWrapper } from './style.less';
 
 const defaultColor = '#1c84c6';
 
 class App extends preact.Component {
   componentDidMount() {
+    document.title = `Colour ${this.getColor()}`;
+  }
+
+  componentDidUpdate() {
     document.title = `Colour ${this.getColor()}`;
   }
 
@@ -40,39 +44,42 @@ class App extends preact.Component {
 
     return (
       <div>
-        <h1>Colour {color}</h1>
-        <div
-          className={styles['color-box']}
-          style={{
-            backgroundColor: color,
-          }}
-        >
-          <div>
-            <div>{color}</div>
-            <div>RGB: {rgb.r}, {rgb.g}, {rgb.b}</div>
-            <div>HSV: {hsv.h}, {hsv.s}, {hsv.v}</div>
+        <div className={contentWrapper}>
+          <h1>Colour {color}</h1>
+          <div
+            className={styles['color-box']}
+            style={{
+              backgroundColor: color,
+            }}
+          >
+            <div>
+              <div>{color}</div>
+              <div>RGB: {rgb.r}, {rgb.g}, {rgb.b}</div>
+              <div>HSV: {hsv.h}, {hsv.s}, {hsv.v}</div>
+            </div>
+          </div>
+          <h2>Shades of {color}</h2>
+          <Shades color={rgb} />
+          <h2>Tints of {color}</h2>
+          <Tints color={rgb} />
+          <div className={styles['color-box-wrapper']}>
+            <Link href={`/${this.complementaryColor().substr(1)}`}>
+              <div
+                className={styles['color-box']}
+                style={{
+                  backgroundColor: this.complementaryColor(),
+                }}
+              >
+                {this.complementaryColor()}
+              </div>
+              <div className={styles.center}>Complementary colour</div>
+            </Link>
           </div>
         </div>
-        <h2>Shades of {color}</h2>
-        <Shades color={rgb} />
-        <h2>Tints of {color}</h2>
-        <Tints color={rgb} />
-        <div className={styles['color-box-wrapper']}>
-          <Link href={`/${this.complementaryColor().substr(1)}`}>
-            <div
-              className={styles['color-box']}
-              style={{
-                backgroundColor: this.complementaryColor(),
-              }}
-            >
-              {this.complementaryColor()}
-            </div>
-            <div className={styles.center}>Complementary colour</div>
-          </Link>
-        </div>
-        <footer>
-          <p>Author: Sergio Moura</p>
+        <footer id={styles.footer}>
+          <p>Created by <a href="https://github.com/lsmoura">Sergio Moura</a></p>
           <p><a href="https://github.com/lsmoura/colours">Fork me on github</a></p>
+          <p>Built with <a href="https://preactjs.com/" target="_blank">⚛️ preact</a></p>
         </footer>
       </div>
     );

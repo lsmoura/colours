@@ -1,3 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  &, &:visited {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  color: #66d;
+}
+
+.contentWrapper {
+  margin: 0;
+  padding: 0 1em;
+}
+
 .color-box-wrapper {
   width: 200px;
 }
@@ -43,4 +63,19 @@
 
 .center {
   text-align: center;
+}
+
+footer#footer {
+  margin-top: 1em;
+  padding: 1em 2em;
+  background-color: #ddd;
+  color: #333;
+
+  > p {
+    display: inline-block;
+    font-family: Verdana;
+    font-size: 0.75em;
+    margin: 0.25em 0.5em;
+    padding: 0;
+  }
 }

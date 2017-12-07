@@ -94,3 +94,15 @@ export const rgbToHsv = ({ r, g, b }) => {
 
   return out;
 }
+
+export const hsvToRgb = ({ h, s, v }) => {
+  console.log('h', h);
+  console.log('s', s);
+  console.log('v', v);
+  const hRad = Math.PI * h / 360;
+  const r = (v / 100) * (1 + s/100 * (Math.cos(hRad) - 1));
+  const g = (v / 100) * (1 + s/100 * (Math.cos(hRad + 2 * Math.PI / 3) - 1));
+  const b = (v / 100) * (1 + s/100 * (Math.cos(hRad - 2 * Math.PI / 3) - 1));
+
+  return { r, g, b };
+};
