@@ -4,6 +4,7 @@ import preact from 'preact';
 import { Link } from 'preact-router';
 import Tints from './Tints';
 import Shades from './Shades';
+import Footer from './Footer';
 
 import { hexToRgb, rgbToHex, rgbToHsv } from './helpers';
 
@@ -76,11 +77,7 @@ class App extends preact.Component {
             </Link>
           </div>
         </div>
-        <footer id={styles.footer}>
-          <p>Created by <a href="https://github.com/lsmoura">Sergio Moura</a></p>
-          <p><a href="https://github.com/lsmoura/colours">Fork me on github</a></p>
-          <p>Built with <a href="https://preactjs.com/" target="_blank">⚛️ preact</a></p>
-        </footer>
+        <Footer />
       </div>
     );
   }
