@@ -9,20 +9,27 @@ const CSS_MAPS = ENV !== 'production';
 
 console.log(`building for '${ENV}' environment`);
 
+const htmlConfig = {
+  title: 'Web Colours',
+  template: path.join(__dirname, 'static', 'index.html'),
+  minify: {
+    collapseWhitespace: true,
+    removeComments: ENV === 'production',
+  },
+};
+
 const plugins = [
   new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(ENV) }),
-  new HtmlWebpackPlugin({
-    title: 'Web Colours',
-    template: path.join(__dirname, 'static', 'index.html'),
-    minify: {
-      collapseWhitespace: true,
-      removeComments: ENV === 'production',
-    },
-  }),
+  new HtmlWebpackPlugin(htmlConfig),
   new ExtractTextPlugin('styles.css'),
 ];
 
 if (ENV === 'production') {
+  plugins.push(new HtmlWebpackPlugin({
+    ...htmlConfig,
+    filename: '200.html',
+  }));
+
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     output: { comments: false },
     compress: {
