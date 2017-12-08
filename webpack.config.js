@@ -11,7 +11,14 @@ console.log(`building for '${ENV}' environment`);
 
 const plugins = [
   new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(ENV) }),
-  new HtmlWebpackPlugin(),
+  new HtmlWebpackPlugin({
+    title: 'Web Colours',
+    template: path.join(__dirname, 'static', 'index.html'),
+    minify: {
+      collapseWhitespace: true,
+      removeComments: ENV === 'production',
+    },
+  }),
   new ExtractTextPlugin('styles.css'),
 ];
 
@@ -20,7 +27,6 @@ if (ENV === 'production') {
     output: { comments: false },
     compress: {
       drop_debugger: true,
-
     },
   }))
 }
@@ -34,6 +40,11 @@ const config = {
 		publicPath: '/',
 		filename: 'bundle.js',
 	},
+
+  externals: {
+    preact: 'preact',
+    'preact-router': 'preactRouter',
+  },
 
   resolve: {
 		extensions: ['.jsx', '.js', '.json', '.less'],
@@ -64,6 +75,7 @@ const config = {
               options: {
                 modules: true,
                 sourceMap: CSS_MAPS,
+                minimize: ENV === 'production',
               },
             },
             {
