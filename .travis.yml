@@ -7,7 +7,11 @@ node_js:
   - 8
 
 script:
-  - npm test
+  - yarn test
+
+after_success:
+  - yarn build
+  - test $TRAVIS_BRANCH = "master" && surge --project ./build --domain $SURGE_DOMAIN
 
 cache:
   yarn: true
