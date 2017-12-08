@@ -1,3 +1,4 @@
+# Setup SURGE_DOMAIN, SURGE_TOKEN and SURGE_EMAIL environment variables for auto deploy to work
 group: stable
 os: linux
 sudo: false
@@ -10,7 +11,7 @@ script:
   - yarn test
 
 after_success:
-  - yarn build
+  - test $TRAVIS_BRANCH = "master" && yarn build:production
   - test $TRAVIS_BRANCH = "master" && surge --project ./build --domain $SURGE_DOMAIN
 
 cache:
