@@ -1,4 +1,5 @@
 /** @jsx preact.h */
+/* global process require */
 
 import preact from 'preact';
 import Router from 'preact-router';
