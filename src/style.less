@@ -13,6 +13,9 @@ a {
   color: #66d;
 }
 
+h1, h2, h3, h4, h5, h6 {
+}
+
 .contentWrapper {
   margin: 0;
   padding: 0 1em;
@@ -44,11 +47,12 @@ a {
 }
 
 .shades, .tints {
-  padding: 1em 0;
+  padding: 0;
   > .shade-block {
     width: 9%;
     height: 100px;
     display: inline-block;
+    min-width: 100px;
 
     .color-block {
       width: 100%;
@@ -59,9 +63,23 @@ a {
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    text-align: center;
+  }
 }
 
 .center {
+  text-align: center;
+}
+
+.derivativeColors {
+  padding-top: 1em;
+  > div {
+    display: inline-block;
+    margin: 0 0.2em;
+  }
+
   text-align: center;
 }
 

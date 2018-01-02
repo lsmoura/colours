@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 import { hexToRgb, rgbToHex, rgbToHsv, hsvToRgb } from './helpers';
 
-import styles, { contentWrapper } from './style.less';
+import styles, { contentWrapper, derivativeColors } from './style.less';
 
 const defaultColor = '#1c84c6';
 
@@ -102,30 +102,30 @@ class App extends preact.Component {
           <h2>Tints of {color}</h2>
           <Tints color={rgb} />
 
-          <ColorBoxWrapper
-            color={this.complementaryColor()}
-            label="Complementary colour"
-          />
+          <div className={derivativeColors}>
+            <ColorBoxWrapper
+              color={this.complementaryColor()}
+              label="Complementary colour"
+            />
 
-          <ColorBoxWrapper
-            color={this.rotateColor(120)}
-            label="Rotate 120"
-          />
-          <ColorBoxWrapper
-            color={this.rotateColor(240)}
-            label="Rotate 240"
-          />
+            <ColorBoxWrapper
+              color={this.rotateColor(120)}
+              label="Rotate 120"
+            />
+            <ColorBoxWrapper
+              color={this.rotateColor(240)}
+              label="Rotate 240"
+            />
 
-          <ColorBoxWrapper
-            color={this.rotateColor(60)}
-            label="+60"
-          />
-          <ColorBoxWrapper
-            color={this.rotateColor(-60)}
-            label="-60"
-          />
-
-
+            <ColorBoxWrapper
+              color={this.rotateColor(60)}
+              label="+60"
+            />
+            <ColorBoxWrapper
+              color={this.rotateColor(-60)}
+              label="-60"
+            />
+          </div>
         </div>
         <Footer />
       </div>
