@@ -5,10 +5,10 @@ import { Link } from 'preact-router';
 import { rgbToHex } from './helpers';
 import styles from './style.less';
 
+const backgroundColor = (rgb) =>
+  `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
 class ShadeTintBase extends preact.Component {
-  backgroundColor(rgb) {
-    return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-  }
 
   block(key, rgb) {
     const hashColor = rgbToHex(rgb.r, rgb.g, rgb.b);
@@ -20,11 +20,11 @@ class ShadeTintBase extends preact.Component {
       >
         <div className={styles['color-block']}
           style={{
-            backgroundColor: this.backgroundColor(rgb),
+            backgroundColor: backgroundColor(rgb),
           }}
           />
         <div className={styles['color-label']}>
-          {rgbToHex(rgb.r, rgb.g, rgb.b)}
+          {hashColor}
         </div>
       </Link>
     )

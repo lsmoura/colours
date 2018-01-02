@@ -2,9 +2,7 @@
 
 import preact from 'preact';
 import ShadeTintBase from './ShadeTintBase';
-
 import { shades } from './style.less';
-
 
 class Shades extends ShadeTintBase {
   render(props) {
