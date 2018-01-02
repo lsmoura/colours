@@ -84,6 +84,7 @@ const config = {
                 modules: true,
                 sourceMap: CSS_MAPS,
                 minimize: ENV === 'production',
+                localIdentName: ENV === 'production' ? '[sha1:hash:hex:3]' : '[path][name]__[local]--[sha1:hash:hex:3]',
               },
             },
             {
@@ -98,7 +99,7 @@ const config = {
 
   plugins,
 
-  devtool: ENV === 'production' ? undefined : 'source-map',
+  devtool: ENV === 'production' ? 'source-map' : 'inline-source-map',
 
   devServer: {
 		port: process.env.PORT || 8080,
@@ -109,13 +110,6 @@ const config = {
 		historyApiFallback: true,
 		open: true,
 		openPage: '',
-		proxy: {
-			// OPTIONAL: proxy configuration:
-			// '/optional-prefix/**': { // path pattern to rewrite
-			//   target: 'http://target-host.com',
-			//   pathRewrite: path => path.replace(/^\/[^\/]+\//, '')   // strip first path segment
-			// }
-		},
 	},
 };
 
