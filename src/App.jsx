@@ -6,11 +6,27 @@ import Tints from './Tints';
 import Shades from './Shades';
 import Footer from './Footer';
 
-import { hexToRgb, rgbToHex, rgbToHsv } from './helpers';
+import { hexToRgb, rgbToHex, rgbToHsv, hsvToRgb } from './helpers';
 
 import styles, { contentWrapper } from './style.less';
 
 const defaultColor = '#1c84c6';
+
+const ColorBoxWrapper = ({ color, label }) => (
+  <div className={styles['color-box-wrapper']}>
+    <Link href={`/${color.substr(1)}`}>
+      <div
+        className={styles['color-box']}
+        style={{
+          backgroundColor: color,
+        }}
+      >
+        {color}
+      </div>
+      <div className={styles.center}>{label}</div>
+    </Link>
+  </div>
+);
 
 class App extends preact.Component {
   componentDidMount() {
@@ -38,6 +54,28 @@ class App extends preact.Component {
     return rgbToHex(complementary.r, complementary.g, complementary.b);
   }
 
+  rotateColor(n) {
+    const originalRGB = hexToRgb(this.getColor());
+    const originalHSV = rgbToHsv(originalRGB);
+
+    let nextH = originalHSV.h + n;
+    while (nextH < 0) nextH += 360;
+    while (nextH >= 360) nextH -= 360;
+
+    const newHSV = Object.assign(
+      {},
+      originalHSV,
+      {
+        h: nextH,
+      }
+    );
+
+    const newRGB = hsvToRgb(newHSV);
+    const newHex = rgbToHex(newRGB.r, newRGB.g, newRGB.b);
+
+    return newHex;
+  }
+
   render() {
     const color = this.getColor();
     const rgb = hexToRgb(color);
@@ -63,19 +101,31 @@ class App extends preact.Component {
           <Shades color={rgb} />
           <h2>Tints of {color}</h2>
           <Tints color={rgb} />
-          <div className={styles['color-box-wrapper']}>
-            <Link href={`/${this.complementaryColor().substr(1)}`}>
-              <div
-                className={styles['color-box']}
-                style={{
-                  backgroundColor: this.complementaryColor(),
-                }}
-              >
-                {this.complementaryColor()}
-              </div>
-              <div className={styles.center}>Complementary colour</div>
-            </Link>
-          </div>
+
+          <ColorBoxWrapper
+            color={this.complementaryColor()}
+            label="Complementary colour"
+          />
+
+          <ColorBoxWrapper
+            color={this.rotateColor(120)}
+            label="Rotate 120"
+          />
+          <ColorBoxWrapper
+            color={this.rotateColor(240)}
+            label="Rotate 240"
+          />
+
+          <ColorBoxWrapper
+            color={this.rotateColor(60)}
+            label="+60"
+          />
+          <ColorBoxWrapper
+            color={this.rotateColor(-60)}
+            label="-60"
+          />
+
+
         </div>
         <Footer />
       </div>

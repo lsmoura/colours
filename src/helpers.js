@@ -1,8 +1,3 @@
-// Tell Babel to transform JSX into preact.h() calls:
-/** @jsx preact.h */
-
-//import preact from 'preact';
-
 //reference: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb#5624139
 export const hexToRgb = hex => {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -26,9 +21,8 @@ export const componentToHex = component => {
   return hex.length == 1 ? "0" + hex : hex;
 };
 
-export const rgbToHex = (r, g, b) => {
-  return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
-};
+export const rgbToHex = (r, g, b) =>
+  `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
 
 export const min = (...args) => {
   let min = args[0];
@@ -95,14 +89,13 @@ export const rgbToHsv = ({ r, g, b }) => {
   return out;
 }
 
+const floorAbs = (n) => Math.floor(Math.abs(n));
+
 export const hsvToRgb = ({ h, s, v }) => {
-  console.log('h', h);
-  console.log('s', s);
-  console.log('v', v);
   const hRad = Math.PI * h / 360;
-  const r = (v / 100) * (1 + s/100 * (Math.cos(hRad) - 1));
-  const g = (v / 100) * (1 + s/100 * (Math.cos(hRad + 2 * Math.PI / 3) - 1));
-  const b = (v / 100) * (1 + s/100 * (Math.cos(hRad - 2 * Math.PI / 3) - 1));
+  const r = floorAbs((v / 100) * (1 + s/100 * (Math.cos(hRad) - 1)) * 255);
+  const g = floorAbs((v / 100) * (1 + s/100 * (Math.cos(hRad + 2 * Math.PI / 3) - 1)) * 255);
+  const b = floorAbs((v / 100) * (1 + s/100 * (Math.cos(hRad - 2 * Math.PI / 3) - 1)) * 255);
 
   return { r, g, b };
 };
