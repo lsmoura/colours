@@ -11,6 +11,7 @@ console.log(`building for '${ENV}' environment`);
 
 const htmlConfig = {
   title: 'Web Colours',
+  description: 'HTML colors and variants',
   template: path.join(__dirname, 'static', 'index.html'),
   minify: {
     collapseWhitespace: true,

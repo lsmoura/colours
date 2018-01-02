@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width">
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="https://unpkg.com/preact@^8"></script>
     <script src="https://unpkg.com/preact-router@^2"></script>
+    <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>" />
+    <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   </head>
   <body>
   </body>
