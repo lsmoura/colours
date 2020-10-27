@@ -7,13 +7,10 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
     "css-loader": "^4.3.0",
     "eslint": "^7.12.1",
     "eslint-plugin-react": "^7.21.5",
@@ -25,6 +22,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
     "less": "^3.12.2",
     "preact": "^10.5.5",
     "preact-router": "^3.2.1",

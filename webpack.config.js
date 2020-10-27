@@ -42,6 +42,7 @@ if (ENV === 'production') {
 }
 
 const config = {
+  mode: ENV === 'production' ? 'production' : 'development',
   context: path.resolve(__dirname, 'src'),
 	entry: './index.jsx',
 
