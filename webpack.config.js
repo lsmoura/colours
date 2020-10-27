@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const ENV = process.env.NODE_ENV || 'development';
 const CSS_MAPS = ENV !== 'production';
@@ -22,7 +22,9 @@ const htmlConfig = {
 const plugins = [
   new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(ENV) }),
   new HtmlWebpackPlugin(htmlConfig),
-  new ExtractTextPlugin('styles.css'),
+  new MiniCssExtractPlugin({
+    filename: 'style.css',
+  }),
 ];
 
 if (ENV === 'production') {
@@ -75,24 +77,22 @@ const config = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                sourceMap: CSS_MAPS,
-                minimize: ENV === 'production',
-                localIdentName: ENV === 'production' ? '[sha1:hash:hex:3]' : '[path][name]__[local]--[sha1:hash:hex:3]',
-              },
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: CSS_MAPS,
+              // minimize: ENV === 'production',
+              // localIdentName: ENV === 'production' ? '[sha1:hash:hex:3]' : '[path][name]__[local]--[sha1:hash:hex:3]',
             },
-            {
-              loader: 'less-loader',
-              options: { sourceMap: CSS_MAPS },
-            },
-          ],
-        }),
+          },
+          {
+            loader: 'less-loader',
+            options: { sourceMap: CSS_MAPS },
+          },
+        ],
       },
     ],
   },
